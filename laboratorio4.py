@@ -93,6 +93,7 @@ plots[2].grid(True)
 info = info[:rate]
 f.subplots_adjust( hspace=1 )
 
+# Parte 1.a
 # Grafico tiempo normalizado (?)
 graficoTiempo(info/np.max(info), rate, plots[0])
 # Grafico AM
@@ -111,20 +112,24 @@ graficoTiempo(info/np.max(info), rate, plots[2])
 #graficoFM(info, rate,2000000,50, plots[1], titulo = "Señal FM", st = True)
 
 f.show()
+f.savefig("figura1a.eps")
 input("Presione enter para seguir:\n")
+# Parte 1.b
+
+f, plots = plt.subplots(4)
+f.subplots_adjust( hspace=1 )
 
 #graficoFM(info, rate,2000000,50, plots[2], False)
 
-graficoAM(info, rate,200000, plots[2], pm=0.25, color = 'r', titulo = 'Señal AM')
-graficoAM(info, rate,200000, plots[2], pm=1.5, color = 'g', titulo = 'Señal AM')
-graficoAM(info, rate,200000, plots[2], pm=2.75, color = 'b', titulo = 'Señal AM')
+graficoAM(info, rate,200000, plots[0], pm=0.25, color = 'r', titulo = 'Señal AM')
+graficoAM(info, rate,200000, plots[0], pm=1.5, color = 'g', titulo = 'Señal AM')
+graficoAM(info, rate,200000, plots[0], pm=2.75, color = 'b', titulo = 'Señal AM')
 
-graficoFrecuencia(info, rate, plots[3], titulo = "Frecuencia Original")
-graficoAM(info, rate,200000, plots[4], pm=1.0, st = True,color = 'r', titulo = 'Frecuencia Señal AM')
-graficoFM(info, rate,2000000,50, plots[5], titulo = "Frecuencia Señal FM", st = True)
+graficoFrecuencia(info, rate, plots[1], titulo = "Frecuencia Original")
+graficoAM(info, rate,200000, plots[2], pm=1.0, st = True,color = 'r', titulo = 'Frecuencia Señal AM')
+graficoFM(info, rate,2000000,50, plots[3], titulo = "Frecuencia Señal FM", st = True)
 #graficoTiempo(info, rate, plots[2]) 
 
 f.show()
+f.savefig("figura1b.eps")
 input("Presione enter para salir:\n")
-f.savefig("figura.eps")
-
