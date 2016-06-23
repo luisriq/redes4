@@ -12,11 +12,14 @@ from binarizacion import *
 
 #Leyendo el archivo
 rate,info = read('handel.wav')
+print(info[:60])
 datosBinarizados = binarizar(info, 10**5)
 
 originalQM = modularQM(datosBinarizados)
-ruidoQM = modularQM(add_ruido(datosBinarizados, -2))
-
+ruidoQM = add_ruido(datosBinarizados, -2)
+dm = demodularQM(originalQM)
+debin = debinarizar(datosBinarizados)
+#print(debin)
 
 f, plots = plt.subplots(2)
 f.suptitle("Modulación")
@@ -25,9 +28,11 @@ plots[1].grid(True)
 f.subplots_adjust( hspace=1 )
 
 # Graficando
-print(ruidoQM)
+#print(ruidoQM)
 a=ruidoQM#[ [] for p in ruidoQM]
-plots[0].plot(*zip(*a), marker='o', color='r', ls='')
+plots[0].plot(debin)
+plots[1].plot(info[:6250])
+#plots[0].plot(*zip(*a), marker='o', color='r', ls='')
 
 
 f.show()

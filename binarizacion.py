@@ -71,13 +71,14 @@ def demodularQM(qmSignal):
 		binarysignal.append((n>>1)&1)
 		binarysignal.append(n&1)
 	return binarysignal
-a=[1,2,3]
+
+"""a=[1,2,3]
 b=binarizar(a,1e15)
 c=add_ruido(modularQM(b),0)
 d=demodularQM(c)
 print(a)
 print(c)
-print(debinarizar(d))
+print(debinarizar(d))"""
 
 
 
