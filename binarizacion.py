@@ -20,13 +20,12 @@ def debinarizar(binarysignal):
 	signal=[]
 	numero=0
 	for i,b in enumerate(binarysignal):
-		if(i==0 or i%15!=0):
-			numero=numero|b<<(i%16)
-		else:
+		if((i+1)%16==0):
 			numero=numero * (1,-1)[b]
-		if(i%15==0 and i!=0):
 			signal.append(numero)
 			numero=0
+		else:
+			numero=numero|b<<(i%16)
 	return signal
 
 def modularQM(binarysignal,conruido=False):
@@ -58,7 +57,7 @@ def modularQM(binarysignal,conruido=False):
 	return np.array(signal)
 
 def add_ruido(qmSignal,db):
-	d=1/(10**(db/10.0))**.5
+	d=(10**(-db/10.0))
 	size=len(qmSignal)
 	ruido=(np.random.normal(0,d,size)+np.random.normal(0,d,size)*1j)
 	return qmSignal+ruido
@@ -71,14 +70,5 @@ def demodularQM(qmSignal):
 		binarysignal.append((n>>1)&1)
 		binarysignal.append(n&1)
 	return binarysignal
-
-"""a=[1,2,3]
-b=binarizar(a,1e15)
-c=add_ruido(modularQM(b),0)
-d=demodularQM(c)
-print(a)
-print(c)
-print(debinarizar(d))"""
-
 
 
