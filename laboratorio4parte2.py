@@ -15,13 +15,11 @@ def graficarConstelacion(datos, color, marc, msize = 5):
 def generarArreglo(arreglo, ind):
 	return [ [r, i] for r,i in zip(np.real(arreglo[ind]), np.imag(arreglo[ind])) ]
 
-for dB in [-2, 0, 4, 7, 10]:
-	#dB = 10
-
-	#Leyendo el archivo
-	rate,info = read('handel.wav')
-	datosBinarizados = binarizar(info, 10**5)
-	originalQM = modularQM(datosBinarizados)
+#Leyendo el archivo
+rate,info = read('handel.wav')
+datosBinarizados = binarizar(info, 10**5)
+originalQM = modularQM(datosBinarizados)
+for dB in [-2,0,4,7,10]:
 	ruidoQM = add_ruido(originalQM, dB)
 	dm = demodularQM(ruidoQM)
 	debin = debinarizar(dm)
@@ -66,6 +64,7 @@ for dB in [-2, 0, 4, 7, 10]:
 	plt.xlabel("I")
 	plt.show()
 
+
 f, plots = plt.subplots(2)
 f.subplots_adjust( hspace=0.4 )
 f.suptitle("Modulación Digital")
@@ -76,10 +75,12 @@ plots[1].set_title("Señal demodulada con ruido (%ddB)"%dB)
 plots[0].grid(True)
 plots[1].grid(True)
 
+# Graficando 10^5 bits con ruido
 plots[1].plot(debin)
+# Graficando 10^5 bits = 6250 enteros
 plots[0].plot(info[:6250])
 
 
 f.show()
-f.savefig("figura2a.eps")
+f.savefig("figura2a.pdf")
 input("Presione enter para seguir:\n")

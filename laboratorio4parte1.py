@@ -147,9 +147,9 @@ f, plots = plt.subplots(3)
 f.subplots_adjust( hspace=1 )
 # Modulacion a distintos porcentajes
 
-graficoAMMod(info, rate,500000, plots[0], pm=0.5, color = 'r', titulo = 'Señal AM modulada al 50%')
+graficoAMMod(info, rate,500000, plots[0], pm=0.15, color = 'r', titulo = 'Señal AM modulada al 15%')
 graficoAMMod(info, rate,500000, plots[1], pm=1.0, color = 'g', titulo = 'Señal AM modulada al 100%')
-graficoAMMod(info, rate,500000, plots[2], pm=2.0, color = 'b', titulo = 'Señal AM modulada al 200%')
+graficoAMMod(info, rate,500000, plots[2], pm=1.25, color = 'b', titulo = 'Señal AM modulada al 125%')
 
 f.show()
 f.savefig("figura1b1.pdf")
