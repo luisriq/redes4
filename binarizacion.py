@@ -1,9 +1,9 @@
 import numpy as np
 
-def binarizar(signal,themaczimo):
+def binarizar(signal,maximo):
 	binarysignal =[]
 	for index,i in enumerate(signal):
-		if((index+1)*16>themaczimo):
+		if((index+1)*16>maximo):
 			break
 		signo = (1,0)[i>0]
 		aux = abs(i)
